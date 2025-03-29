@@ -5,6 +5,7 @@ import { ThemeSwitcher } from '~/components/theme-switcher';
 import { Typography } from '~/components/typography';
 
 import { NavigationLink } from './NavigationLink';
+import { Profile } from './Profile';
 
 function Header() {
   const t = useTranslations('Navigation');
@@ -24,6 +25,7 @@ function Header() {
         <div className="flex items-center gap-2">
           <ThemeSwitcher />
           <LocaleSwitcher />
+          <Profile />
         </div>
       </nav>
     </header>
