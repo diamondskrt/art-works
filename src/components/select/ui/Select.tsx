@@ -33,7 +33,7 @@ function Select({
       onValueChange={onSelectChange}
       {...props}
     >
-      <SelectTrigger className={cn('min-w-[150px]', triggerClassName)}>
+      <SelectTrigger className={cn(triggerClassName)}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>

@@ -1,5 +1,7 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
+import { cn } from '~/lib/utils';
+
 function DropdownMenuLabel({
   className,
   inset,

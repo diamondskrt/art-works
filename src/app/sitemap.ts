@@ -6,7 +6,7 @@ import { getPathname } from '~/i18n/navigation';
 import { routing } from '~/i18n/routing';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [...getEntries('/'), ...getEntries('/pathnames')];
+  return [...getEntries('/'), ...getEntries('/drawings')];
 }
 
 type Href = Parameters<typeof getPathname>[0]['href'];

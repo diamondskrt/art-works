@@ -7,6 +7,15 @@ const withNextIntl = createNextIntlPlugin({
   },
 });
 
-const config: NextConfig = {};
+const config: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cloud.appwrite.io',
+      },
+    ],
+  },
+};
 
 export default withNextIntl(config);

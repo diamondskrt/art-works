@@ -39,6 +39,7 @@ function LocaleSwitcher() {
         value: cur,
       }))}
       disabled={isPending}
+      triggerClassName="min-w-[80px]"
       onSelectChange={onSelectChange}
     />
   );
