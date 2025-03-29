@@ -3,12 +3,12 @@ import { notFound } from 'next/navigation';
 import { Locale, hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
+import { Toaster } from '~/components/toaster';
 import { routing } from '~/i18n/routing';
 import { cn } from '~/lib/utils';
+import { AuthProvider } from '~/providers/auth-provider';
 import { QueryProvider } from '~/providers/query-provider';
 import { ThemeProvider } from '~/providers/theme-provider';
-import { Footer } from '~/widgets/footer';
-import { Header } from '~/widgets/header';
 
 type Props = {
   children: React.ReactNode;
@@ -45,18 +45,19 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html className="h-full" lang={locale} suppressHydrationWarning>
       <body className={cn(inter.className, 'flex h-full flex-col')}>
         <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NextIntlClientProvider>
-              <Header />
-              {children}
-              <Footer />
-            </NextIntlClientProvider>
-          </ThemeProvider>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NextIntlClientProvider>
+                {children}
+                <Toaster richColors />
+              </NextIntlClientProvider>
+            </ThemeProvider>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>
