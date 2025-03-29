@@ -5,8 +5,8 @@ export const routing = defineRouting({
   defaultLocale: 'en',
   pathnames: {
     '/': '/',
-    '/pathnames': {
-      ru: '/pathnames',
+    '/drawings': {
+      ru: '/drawings',
     },
   },
 });

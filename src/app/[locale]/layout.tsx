@@ -1,16 +1,17 @@
-import { clsx } from 'clsx';
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { Locale, hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { ReactNode } from 'react';
 
 import { routing } from '~/i18n/routing';
+import { cn } from '~/lib/utils';
+import { QueryProvider } from '~/providers/query-provider';
 import { ThemeProvider } from '~/providers/theme-provider';
-import { Navigation } from '~/widgets/navigation';
+import { Footer } from '~/widgets/footer';
+import { Header } from '~/widgets/header';
 
 type Props = {
-  children: ReactNode;
+  children: React.ReactNode;
   params: Promise<{ locale: Locale }>;
 };
 
@@ -42,18 +43,21 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html className="h-full" lang={locale} suppressHydrationWarning>
-      <body className={clsx(inter.className, 'flex h-full flex-col')}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextIntlClientProvider>
-            <Navigation />
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
+      <body className={cn(inter.className, 'flex h-full flex-col')}>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextIntlClientProvider>
+              <Header />
+              {children}
+              <Footer />
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );
